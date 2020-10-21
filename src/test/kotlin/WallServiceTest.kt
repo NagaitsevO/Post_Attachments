@@ -12,6 +12,9 @@ internal class WallServiceTest {
     val theFirstViewsObject = ViewsObject (
             count = 1
     )
+    val theFirstVideo = AttachmentVideo (player = null)
+    val theFirstPhoto = AttachmentPhoto (sizes = null)
+    val theFirstAttach = arrayOf(theFirstPhoto, theFirstVideo)
 
     val theFirstPost = Post (
             id = 1,
@@ -19,25 +22,29 @@ internal class WallServiceTest {
             likes = theFirstLikes,
             reposts = theFirstReposts,
             viewsObject = theFirstViewsObject,
-            postType = PostType.POST
+            postType = PostType.POST,
+            attach = theFirstAttach
     )
 
     @Test
     fun add() {
+        val wallservice = WallService()
         var testParam: Boolean = true
-        WallService.add(theFirstPost)
+        wallservice.add(theFirstPost)
         if (theFirstPost.id == 0) testParam = false
         assertEquals(true, testParam)
     }
 
     @Test
     fun updateRealID() {
-        WallService.add(theFirstPost)
-        assertEquals(true, WallService.update(theFirstPost))
+        val wallservice = WallService()
+        wallservice.add(theFirstPost)
+        assertEquals(true, wallservice.update(theFirstPost))
     }
 
     @Test
     fun updateNotRealID() {
+        val wallservice = WallService()
         val theFirstComments = Comments (
                 canPost = true
         )
@@ -55,8 +62,9 @@ internal class WallServiceTest {
                 likes = theFirstLikes,
                 reposts = theFirstReposts,
                 viewsObject = theFirstViewsObject,
-                postType = PostType.POST
+                postType = PostType.POST,
+                attach = theFirstAttach
         )
-        assertEquals(false, WallService.update(theSecondPost))
+        assertEquals(false, wallservice.update(theSecondPost))
     }
 }

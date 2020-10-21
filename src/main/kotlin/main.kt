@@ -1,6 +1,5 @@
-
-
 fun main() {
+    val wallservice = WallService()
     val theFirstComments = Comments (
             canPost = true
     )
@@ -11,6 +10,9 @@ fun main() {
     val theFirstViewsObject = ViewsObject (
             count = 1
     )
+    val theFirstVideo = AttachmentVideo (player = null)
+    val theFirstPhoto = AttachmentPhoto (sizes = null)
+    val theFirstAttach = arrayOf(theFirstPhoto, theFirstVideo)
 
     val theFirstPost = Post (
             id = 1,
@@ -18,7 +20,8 @@ fun main() {
             likes = theFirstLikes,
             reposts = theFirstReposts,
             viewsObject = theFirstViewsObject,
-            postType = PostType.POST
+            postType = PostType.POST,
+            attach = theFirstAttach
     )
 
     val theSecondPost = Post (
@@ -27,11 +30,15 @@ fun main() {
             likes = theFirstLikes,
             reposts = theFirstReposts,
             viewsObject = theFirstViewsObject,
-            postType = PostType.POST
+            postType = PostType.POST,
+            attach = theFirstAttach
     )
 
     println(theFirstPost)
-    WallService.add(theFirstPost)
-    println(WallService.update(theSecondPost))
+    wallservice.add(theFirstPost)
+    println(wallservice.update(theFirstPost))
     println(theFirstPost)
+
+
+
 }

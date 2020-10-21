@@ -21,7 +21,8 @@ data class Post(
         var isPinned: Boolean = false,
         var markedAsAds: Boolean = false,
         var isFavorite: Boolean = false,
-        var postponedId: Int = 0
+        var postponedId: Int = 0,
+        var attach: Array<Attachment>
 
 ) {}
 
